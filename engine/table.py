@@ -19,7 +19,7 @@ class DBTable:
 	# Define table's Schema loaded from JSON str
 	# Json format -> {'columns':[{'name':'customer_name','datatype':'string','maxlength':50},{},...], 'config':[...]}
 	#
-	def createTable(self,jsonStr):
+	def createColumns(self,jsonStr):
 		schemaDict = json.loads(jsonStr)
 		columnsObj = schemaDict['columns']
 		#miscCfgObj = schemaDict['config']
