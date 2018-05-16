@@ -19,15 +19,16 @@ class DBTable:
 	# Define table's Schema loaded from JSON str
 	# Json format -> {'columns':[{'name':'customer_name','datatype':'string','maxlength':50},{},...], 'config':[...]}
 	#
-	def defineSchema(self,jsonStr):
+	def createTable(self,jsonStr):
 		schemaDict = json.loads(jsonStr)
 		columnsObj = schemaDict['columns']
 		#miscCfgObj = schemaDict['config']
 		cfgFile = open(self.absTablePath+os.sep+'config.bin','wb')
-		# write schema to config file binary
-		cfgFile.close()
+		# Validate Json	and create column bin files	
 		for col in columnsObj:
 			c = open(self.absTablePath+os.sep+col['name'],'wb')
 			# write headers
 			c.close()
-		
+		# write schema to config file binary
+		cfgFile.write(json.dumps(jsonStr))
+		cfgFile.close()		
