@@ -36,9 +36,13 @@ class DBTable:
 		# Validate Json	and create column bin files	
 		for col in columnsObj:
 			c = open(self.absTablePath+os.sep+col['name'],'wb')
-			# calculate byte_multiplication_factor
-			# write headers to column file
+			# calculate byte_multiplication_factor and write to config dict
+			record_byte_length = ec.MAX_COLUMN_KEY_LENGTH + 1 + col['maxlength']
+			columnsObj[col]['record_byte_length'] = record_byte_length
 			c.close()
+		# write first max_record_id, first 10 bytes reserved
+		cfgfile.write('0000000000')
 		# write schema to config file binary
-		cfgFile.write(json.dumps(jsonStr))
+		cfgFile.write(json.dumps(columnsObj))
+		#cfgFile.write(json.dumps(miscCfgObj))
 		cfgFile.close()		
