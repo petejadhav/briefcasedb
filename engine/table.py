@@ -8,10 +8,12 @@ import json
 class DBTable:
 	def __init__(self,name,db_name):
 		self.name = name
+		# Check if databse exists
 		self.database = Database(db_name)
 		if(!self.database.getIfExists()):
 			print("Error: Database "+ db_name +" not found")
 			return False
+		# Create table directory
 		self.absTablePath = ec.DATADIR + os.sep + self.database.name + os.sep + self.name
 		os.mkdir(self.absTablePath)
 		return True
