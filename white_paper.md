@@ -1,5 +1,5 @@
 # BriefCase DB
-* fast read, slow write
+* fast read, slow write v2
 
 ## On-Disk Structure
 * Every database is a folder on disk
